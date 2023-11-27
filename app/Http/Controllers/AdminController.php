@@ -63,16 +63,6 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
     
-        // Hapus foto sebelumnya jika ada
-        if ($request->hasFile('photo') && $profileData->photo) {
-            $previousPhotoPath = public_path('upload/admin_images/' . $profileData->photo);
-    
-            // Hapus foto hanya jika berhasil dihapus
-            if (File::exists($previousPhotoPath)) {
-                File::delete($previousPhotoPath);
-            }
-        }
-    
         // Update profile data
         $profileData->name = $request->name;
         $profileData->username = $request->username;
@@ -83,13 +73,19 @@ class AdminController extends Controller
         // Process and save the new photo
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
+            @unlink(public_path('upload/admin_images/' . $profileData->photo));
             $imageName = date('YmdHi') . '-' . $image->getClientOriginalName();
             $image->move(public_path('upload/admin_images'), $imageName);
             $profileData->photo = $imageName;
         }
     
         $profileData->save();
+
+        $notification = array(
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
     
-        return redirect()->back()->with('success', 'Profile Updated Successfully');
+        return redirect()->back()->with($notification);
     }
 }
