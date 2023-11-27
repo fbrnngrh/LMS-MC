@@ -83,7 +83,7 @@ class AdminController extends Controller
         // Process and save the new photo
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $imageName = date('YmdHi') . '.' . $image->getClientOriginalExtension();
+            $imageName = date('YmdHi') . '-' . $image->getClientOriginalName();
             $image->move(public_path('upload/admin_images'), $imageName);
             $profileData->photo = $imageName;
         }
