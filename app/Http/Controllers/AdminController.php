@@ -6,8 +6,9 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\File;
+
 
 class AdminController extends Controller
 {
@@ -88,4 +89,49 @@ class AdminController extends Controller
     
         return redirect()->back()->with($notification);
     }
+
+    public function AdminChangePassword()
+    {
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+        return view('admin.admin_change_password',compact('profileData'));
+    }
+
+    public function AdminPasswordUpdate(Request $request)
+    {
+    
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed|min:8',
+        ]);
+    
+        // Redirect back with errors if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        // Check if old password matches
+        if (!Hash::check($request->old_password, auth::user()->password)) {
+            $notification = array(
+                'message' => 'Old Password Does Not Match',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    
+        // Update password 
+        User::whereId(auth::user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+    
+        $notification = array(
+            'message' => 'Password Change Successfully',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->back()->with($notification);
+    }
+
 }
