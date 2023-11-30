@@ -743,18 +743,17 @@ Author Email:   contact@techydevs.com
         });
 
         /*====== Dark mode js ========*/
-        const themePicker = document.querySelectorAll(".theme-picker-btn");
-        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-        const currentTheme = localStorage.getItem("theme");
-
-        if (currentTheme === "dark") {
-            document.body.classList.toggle("dark-theme");
-        } else if (currentTheme === "light") {
-            document.body.classList.toggle("light-theme");
-        }
-
-        themePicker.forEach(function (btn) {
-            if (btn) {
+            const themePicker = document.querySelectorAll(".theme-picker-btn");
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem("theme") || "light";
+        
+            if (currentTheme === "dark") {
+                document.body.classList.add("dark-theme");
+            } else if (currentTheme === "light") {
+                document.body.classList.add("light-theme");
+            }
+        
+            themePicker.forEach(function (btn) {
                 btn.addEventListener("click", function () {
                     if (prefersDarkScheme.matches) {
                         document.body.classList.toggle("light-theme");
@@ -764,9 +763,10 @@ Author Email:   contact@techydevs.com
                         var theme = document.body.classList.contains("dark-theme") ? "dark" : "light";
                     }
                     localStorage.setItem("theme", theme);
+                    console.log("Theme changed:", theme);
                 });
-            }
-        });
+            });
+        
 
         /*==== Show/Hide password of input field =====*/
         togglePassword.on('click', function () {
