@@ -26,6 +26,12 @@
 	<link rel="stylesheet" href="{{asset('backend')}}/assets/css/semi-dark.css"/>
 	<link rel="stylesheet" href="{{asset('backend')}}/assets/css/header-colors.css"/>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+	<!-- Datatable -->
+	<link href="{{ asset('backend') }}/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+	<!-- End Datatable -->
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" integrity="sha256-ZCK10swXv9CN059AmZf9UzWpJS34XvilDMJ79K+WOgc=" crossorigin="anonymous">
+
 	<title>LMS - MC TECH</title>
 </head>
 
@@ -67,11 +73,26 @@
 	<script src="{{asset('backend')}}/assets/js/index.js"></script>
 	<!--app JS-->
 	<script src="{{asset('backend')}}/assets/js/app.js"></script>
+	<script src="{{ asset('backend') }}/assets/js/validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+
+	<script src="{{ asset('backend') }}/assets/js/code.js"></script>
 	<script>
 		new PerfectScrollbar(".app-container")
 	</script>
 
+	<!--Datatable-->
+	<script src="{{ asset('backend') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="{{ asset('backend') }}/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#table').DataTable();
+		} );
+	</script>
+	<!--End Datatable-->
+
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 	<script>
 	@if(Session::has('message'))

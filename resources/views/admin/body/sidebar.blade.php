@@ -27,12 +27,12 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
                 </div>
-                <div class="menu-title">eCommerce</div>
+                <div class="menu-title">Manage Category</div>
             </a>
             <ul>
-                <li> <a href="ecommerce-products.html"><i class='bx bx-radio-circle'></i>Products</a>
+                <li> <a href="{{route('all.category')}}"><i class='bx bx-radio-circle'></i>All Category</a>
                 </li>
-                <li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a>
+                <li> <a href="{{route('all.subcategory')}}"><i class='bx bx-radio-circle'></i>All Sub Category</a>
                 </li>
             </ul>
         </li>
