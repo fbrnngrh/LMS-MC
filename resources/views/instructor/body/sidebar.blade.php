@@ -1,4 +1,8 @@
-
+@php
+    $id = Auth::user()->id;
+    $instructorId = App\Models\User::find($id);
+    $status = $instructorId->status;
+@endphp
 
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
@@ -22,6 +26,7 @@
             </a>
         </li>
 
+        @if ($status === '1')
         <li class="menu-label">UI Elements</li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -36,7 +41,6 @@
                 </li>
             </ul>
         </li>
-
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
@@ -50,7 +54,6 @@
                 </li>
             </ul>
         </li>
- 
         <li class="menu-label">Charts & Maps</li>
         <li>
             <a class="has-arrow" href="javascript:;">
@@ -79,7 +82,10 @@
                 <li> <a href="map-vector-maps.html"><i class='bx bx-radio-circle'></i>Vector Maps</a>
                 </li>
             </ul>
+        
         </li>
+        @else
+        @endif
         <li>
             <a href="https://themeforest.net/user/codervent" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>

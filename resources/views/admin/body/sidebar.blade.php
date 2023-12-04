@@ -22,7 +22,7 @@
             </a>
         </li>
 
-        <li class="menu-label">UI Elements</li>
+        <li class="menu-label">Management</li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
@@ -41,12 +41,10 @@
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
                 </div>
-                <div class="menu-title">Components</div>
+                <div class="menu-title">Manage Inctructor</div>
             </a>
             <ul>
-                <li> <a href="component-alerts.html"><i class='bx bx-radio-circle'></i>Alerts</a>
-                </li>
-                <li> <a href="component-accordions.html"><i class='bx bx-radio-circle'></i>Accordions</a>
+                <li> <a href="{{route('all.instructor')}}"><i class='bx bx-radio-circle'></i>All Inctructor</a>
                 </li>
             </ul>
         </li>
